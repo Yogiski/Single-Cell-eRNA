@@ -13,37 +13,27 @@ output: html_notebook
 | 
 
 #### Main tool (bash): detect-sc-erna.sh
-* Inputs: cell-ranger bam files for scATAC-seq and scRNA-seq
-* outputs: Bam file of scRNAs detected in differentially accesible regions
+* Inputs: fragments.tsv.gz, scRNA-seq.bam, {sample}withcelltypeLabels.rds
+* outputs: {celltype}da-sc-eRNA.bam?
 
 !["Proposed workflow for detect-sc-erna.sh"](figures/workflow.png)
  
-##### Script 1 (r): Cluster and Label scRNA-seq data
+##### Script 1 (r): Transfer labels to scATAC-seq data and Apply ArchR to find differentially accesible genomic regions
 
- * Inputs:
- * output:
+ * Inputs: fragments.tsv.gz, {samplename}withcelltypeLabels.rds
+ * Output: da_table.unfiltered.tsv.gz, da_enhancers.tsv.gz, da_enhancers_{celltype}.bed
 
-##### Script 2 (r): Transfer labels to scATAC-seq data
+##### Script 2 (bash): Use bed tools to find overlap of labeled scRNA seq data
 
-* Inputs:
-* Output:
+* Inputs: scRNA-seq.bam, da_enhancers_{celltype}.bed{s}, {sample}withcelltypeLabels.rds
+* Outputs: {celltype}da-sc-eRNA.bam?
 
-##### Script 3 (r): Find genomic regions that are differentially accesible by comparing
-across cell type clusters
-* Inputs:
-* Output: bed file of DA genomic regions
-
-##### Script 4 (bash?): Use bed tools to find overlap of labeled scRNA seq data
-
-* Inputs: scRNA-seq.annotated.bam, da-enhances.bed
-* Outputs: sc-eRNA-seq.annotated.bam
-
-To-dos 210502:
+To-dos:
 
 * utility scripts for:
   + navigating through samples on franco lab datastore
   + setting up new experiment
-* Talk with Matt about specific data files
+* ~~Talk with Matt about specific data files~~ 210802
 * Begin main scripts
 
  
