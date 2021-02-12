@@ -1,4 +1,7 @@
+figures
 *.RData
 *.Rhistory
 __pycache__
+test*
+*.swp
 
