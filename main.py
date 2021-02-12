@@ -30,9 +30,10 @@ if __name__ == "__main__":
                        type=str,
                        help="Path to labeled scRNA-seq data")
 
+        p.add_argument("--out_path",
+                       help="Path to output results")
+
         args = p.parse_args()
 
-        cntrl = Controller(args.patient_id, args.sample_meta, args.datastore, args.scrna_labeled)
+        cntrl = Controller(args.patient_id, args.sample_meta, args.datastore, args.scrna_labeled, out = args.out_path)
         cntrl.run()
-
-        

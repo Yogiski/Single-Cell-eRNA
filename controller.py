@@ -1,15 +1,21 @@
 import os
+import subprocess
 import argparse
 import pandas as pd
 
 class Controller:
 
-        def __init__(self, *args):# sample_path=None, patient, data_path, labeled_path, outpath=None, log=True):
+        def __init__(self, *args, out=None):
 
                 self.patient = args[0]
                 self.sample_path = args[1]
                 self.data_path = args[2]
                 self.labeled = args[3]
+
+                if out == None:
+                        self.out = os.getcwd()
+                else:
+                        self.out = out
 
         def find_fragments(self, info):
 
@@ -42,6 +48,7 @@ class Controller:
 
         def run(self):
 
+                print("Generating file paths")
                 samples = pd.read_csv(self.sample_path, index_col="Patient")
 
                 info = samples.loc[self.patient]
@@ -49,8 +56,6 @@ class Controller:
                 rna_bam = self.find_rna_bam(info)
                 rds = self.find_labeled_rnaseq()
 
-                print(os.listdir(self.data_path))
-                print(fragments)
-                print(rds)
-                print(rna_bam)
+                print("Calling Label Transfer and Differential Accesibility Script")
+                subprocess.run(["Rscript", "label-transfer-da.r", fragments, rds, self.out])
 
