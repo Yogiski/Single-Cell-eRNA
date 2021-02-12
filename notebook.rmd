@@ -14,9 +14,9 @@ output: html_notebook
 
 #### Main tool (bash): detect-sc-erna.sh
 * Inputs: fragments.tsv.gz, scRNA-seq.bam, {sample}withcelltypeLabels.rds
-* outputs: {celltype}da-sc-eRNA.bam?
+* outputs: {sample}-{celltype}-enhancers.bam?
 
-!["Proposed workflow for detect-sc-erna.sh"](figures/workflow.png)
+!["Proposed workflow for detect-sc-erna.sh"](figures/workflow-v2.png)
  
 ##### Script 1 (r): Transfer labels to scATAC-seq data and Apply ArchR to find differentially accesible genomic regions
 
@@ -26,13 +26,13 @@ output: html_notebook
 ##### Script 2 (bash): Use bed tools to find overlap of labeled scRNA seq data
 
 * Inputs: scRNA-seq.bam, da_enhancers_{celltype}.bed{s}, {sample}withcelltypeLabels.rds
-* Outputs: {celltype}da-sc-eRNA.bam?
+* Outputs: {sample}-{celltype}-enhancers.bam?
 
 To-dos:
 
 * utility scripts for:
   + navigating through samples on franco lab datastore
-  + setting up new experiment
+* ~~generate conda yml~~ 210802
 * ~~Talk with Matt about specific data files~~ 210802
 * Begin main scripts
 
