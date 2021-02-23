@@ -23,6 +23,14 @@ output: html_notebook
  * Inputs: fragments.tsv.gz, {samplename}withcelltypeLabels.rds
  * Output: da_table.unfiltered.tsv.gz, da_enhancers.tsv.gz, da_enhancers_{celltype}.bed
 
+```{r}
+library(Seurat)
+library(ArchR)
+
+
+```
+
+
 ##### Script 2 (bash): Use bed tools to find overlap of labeled scRNA seq data
 
 * Inputs: scRNA-seq.bam, da_enhancers_{celltype}.bed{s}, {sample}withcelltypeLabels.rds

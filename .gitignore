@@ -3,4 +3,5 @@
 __pycache__
 test*
 *.swp
-.Rproj.user
+.Rproj*
+.ipynb_checkpoints
