@@ -15,7 +15,7 @@ if __name__ == "__main__":
                        type=str,
                        help="Patient ID for file identification")
 
-        p.add_argument("sample_meta",
+        p.add_argument("sample_file",
                        metavar = "s",
                        type=str,
                        help="Path to single cell sample summary file")

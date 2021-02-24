@@ -17,12 +17,12 @@ class Controller:
                 else:
                         self.out = out
 
-        def find_fragments(self, info):
+        def find_atac(self, info):
 
                 samp_info = self.get_tissue_date_id(info, "ATAC")
-                fragments = self.data_path + "/scATAC-seq_{0}.{1}/{2}/outs/fragments.tsv.gz".format(*samp_info)
+                atac = self.data_path + "/scATAC-seq_{0}.{1}/{2}/outs/".format(*samp_info)
 
-                return fragments
+                return atac
 
         def find_rna_bam(self, info):
 
@@ -52,10 +52,10 @@ class Controller:
                 samples = pd.read_csv(self.sample_path, index_col="Patient")
 
                 info = samples.loc[self.patient]
-                fragments = self.find_fragments(info)
+                atac = self.find_atac(info)
                 rna_bam = self.find_rna_bam(info)
                 rds = self.find_labeled_rnaseq()
 
                 print("Calling Label Transfer and Differential Accesibility Script")
-                subprocess.run(["Rscript", "label-transfer-da.r", fragments, rds, self.out])
+                transfer_process = subprocess.Popen(["Rscript", "label-transfer-da.r", atac, rds, self.out])
 
